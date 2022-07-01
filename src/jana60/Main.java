@@ -70,7 +70,6 @@ public class Main {
 						+ eventoTest.postiDisponibili() + " posti disponibili");
 				break;
 			case "3":
-				System.out.println("Arrivederci");
 				flag = false;
 				break;
 			default:
@@ -78,6 +77,9 @@ public class Main {
 				break;
 			}
 		} while (flag);
+
+		System.out.println(eventoTest + "\n" + "Posti prenotati: " + eventoTest.getPostiPrenotati() + "\n"
+				+ "Posti disponibili: " + eventoTest.postiDisponibili() + "\n" + "Grazie e arrivederci!");
 
 		scan.close();
 	}

@@ -45,7 +45,7 @@ public class Oratore {
 
 	@Override
 	public String toString() {
-		return nome + " " + cognome + " - " + titolo;
+		return titolo + cognome + " " + nome;
 	}
 
 }

@@ -13,7 +13,7 @@ public class Evento {
 
 	// costruttore
 	public Evento(String titolo, LocalDate data, int postiTotali)
-			throws NullPointerException, IllegalArgumentException, Exception {
+			throws NullPointerException, IllegalArgumentException {
 		super();
 
 		validaTitolo(titolo);
@@ -67,7 +67,7 @@ public class Evento {
 	}
 
 	private void validaTitolo(String titolo) throws NullPointerException {
-		if (titolo == null) {
+		if (titolo == null || titolo.isBlank()) {
 			throw new NullPointerException("Il titolo non può essere vuoto");
 		}
 	}
@@ -86,12 +86,40 @@ public class Evento {
 		}
 	}
 
+	// overload prenota
+	public int prenota(int x) throws IllegalArgumentException, Exception {
+		validaData(data);
+		if (postiDisponibili() == 0) {
+			throw new Exception("Non ci sono più posti disponibili");
+		} else if (x > postiDisponibili()) {
+			throw new Exception("Non ci sono così tanti posti disponibili");
+		} else if (x < 0) {
+			throw new Exception("Non puoi prenotare un numero negativo di posti");
+		} else {
+			return postiPrenotati += x;
+		}
+	}
+
 	public int disdici() throws IllegalArgumentException, Exception {
 		validaData(data);
 		if (postiPrenotati == 0) {
 			throw new Exception("Non ci sono prenotazioni da disdire");
 		} else {
 			return postiPrenotati--;
+		}
+	}
+
+	// overload disdici
+	public int disdici(int x) throws IllegalArgumentException, Exception {
+		validaData(data);
+		if (postiPrenotati == 0) {
+			throw new Exception("Non ci sono prenotazioni da disdire");
+		} else if (x > postiPrenotati) {
+			throw new Exception("Non ci sono così tante prenotazioni da disdire");
+		} else if (x < 0) {
+			throw new Exception("Non puoi disdire un numero negativo di posti");
+		} else {
+			return postiPrenotati -= x;
 		}
 	}
 
